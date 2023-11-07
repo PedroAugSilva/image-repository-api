@@ -1,0 +1,1 @@
+export const VALIDATE_SERVICE = 'VALIDATE_SERVICE';

@@ -1,0 +1,59 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  uuid      String    @id
+  firstname String
+  lastname  String
+  photo     String?
+  password  String
+  email     String    @unique
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+  images    Image[]
+  comments  Comment[]
+
+  @@map("tb_users")
+}
+
+model Image {
+  uuid        String    @id
+  name        String
+  description String?   @db.Text()
+  likes       Int       @default(0)
+  url         String
+  user        User      @relation(fields: [userUuid], references: [uuid])
+  userUuid    String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @default(now())
+  tags        Tag[]
+  comments    Comment[]
+}
+
+model Comment {
+  uuid      String   @id
+  body      String   @db.Text()
+  likes     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  imageUuid String
+  userUuid  String
+  image     Image    @relation(fields: [imageUuid], references: [uuid])
+  user      User     @relation(fields: [userUuid], references: [uuid])
+}
+
+model Tag {
+  uuid      String  @id
+  tagName   String
+  imageUuid String?
+  image     Image?  @relation(fields: [imageUuid], references: [uuid])
+}
