@@ -19,18 +19,18 @@ model User {
   email     String    @unique
   createdAt DateTime  @default(now())
   updatedAt DateTime  @default(now())
-  images    Image[]
+  posts     Post[]
   comments  Comment[]
 
   @@map("tb_users")
 }
 
-model Image {
+model Post {
   uuid        String    @id
   name        String
   description String?   @db.Text()
   likes       Int       @default(0)
-  url         String
+  imageUrl    String
   user        User      @relation(fields: [userUuid], references: [uuid])
   userUuid    String
   createdAt   DateTime  @default(now())
@@ -45,15 +45,15 @@ model Comment {
   likes     Int      @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
-  imageUuid String
+  postUuid  String
   userUuid  String
-  image     Image    @relation(fields: [imageUuid], references: [uuid])
+  post      Post     @relation(fields: [postUuid], references: [uuid])
   user      User     @relation(fields: [userUuid], references: [uuid])
 }
 
 model Tag {
-  uuid      String  @id
-  tagName   String
-  imageUuid String?
-  image     Image?  @relation(fields: [imageUuid], references: [uuid])
+  uuid     String  @id
+  name     String
+  postUuid String?
+  post     Post?   @relation(fields: [postUuid], references: [uuid])
 }
