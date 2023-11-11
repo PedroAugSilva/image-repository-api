@@ -26,17 +26,16 @@ model User {
 }
 
 model Post {
-  uuid        String    @id
-  name        String
-  description String?   @db.Text()
-  likes       Int       @default(0)
-  imageUrl    String
-  user        User      @relation(fields: [userUuid], references: [uuid])
-  userUuid    String
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @default(now())
-  tags        Tag[]
-  comments    Comment[]
+  uuid      String    @id
+  body      String?   @db.Text()
+  likes     Int       @default(0)
+  imageUrl  String
+  user      User      @relation(fields: [userUuid], references: [uuid])
+  userUuid  String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+  tags      Tag[]
+  comments  Comment[]
 }
 
 model Comment {

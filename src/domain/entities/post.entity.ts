@@ -1,16 +1,16 @@
 import { randomUUID } from 'crypto';
 
 export class Post {
-  uuid?: string;
-  description: string;
-  likes: number = 0;
+  uuid: string;
+  body?: string;
+  likes: number;
   imageUrl: string;
   userUuid: string;
   updatedAt: Date;
   createdAt: Date;
   tags?: {
     name: string;
-    postUuid: string;
+    uuid: string;
   }[];
   comments?: {
     body: string;
