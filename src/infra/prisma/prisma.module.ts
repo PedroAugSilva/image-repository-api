@@ -3,8 +3,6 @@ import { ApiPrismaClientService } from './prisma.service';
 
 @Global()
 @Module({
-  imports: [],
-  controllers: [],
   providers: [ApiPrismaClientService],
   exports: [ApiPrismaClientService],
 })

@@ -8,7 +8,7 @@ export interface ICreateUserDTO {
   email: string;
   password: string;
 }
-export type OCreateUserUseCaseDTO =
+export type OCreateUserDTO =
   | MissingParamError
   | UnexpectedError
   | AlreadyExistsUserError

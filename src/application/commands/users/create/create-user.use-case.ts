@@ -9,7 +9,7 @@ import { IUsersResporitory } from 'src/domain/repositories/users/users.repositor
 import { ICreateUserUseCase } from 'src/domain/use-cases/users/create/create-user.use-case';
 import {
   ICreateUserDTO,
-  OCreateUserUseCaseDTO,
+  OCreateUserDTO,
 } from 'src/domain/use-cases/users/create/dto/create-user.dto';
 
 @Injectable()
@@ -19,7 +19,7 @@ export class CreateUserUseCase implements ICreateUserUseCase {
     private readonly usersRepository: IUsersResporitory,
   ) {}
 
-  async execute(input: ICreateUserDTO): Promise<OCreateUserUseCaseDTO> {
+  async execute(input: ICreateUserDTO): Promise<OCreateUserDTO> {
     try {
       if (!input.email) {
         return new MissingParamError('email');

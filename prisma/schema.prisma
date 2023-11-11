@@ -29,7 +29,7 @@ model Post {
   uuid      String    @id
   body      String?   @db.Text()
   likes     Int       @default(0)
-  imageUrl  String
+  imageUrl  String    @db.Text()
   user      User      @relation(fields: [userUuid], references: [uuid])
   userUuid  String
   createdAt DateTime  @default(now())

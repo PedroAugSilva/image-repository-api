@@ -15,7 +15,7 @@ export class PrismaPostsRepository implements IPostsRepostory {
         body: input.body,
         userUuid: input.userUuid,
         tags: {
-          ...(input.tags.length && {
+          ...(input.tags && {
             createMany: {
               data: input.tags.map((tag) => ({
                 name: tag.name,
