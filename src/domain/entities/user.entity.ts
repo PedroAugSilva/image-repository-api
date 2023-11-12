@@ -2,6 +2,7 @@ import { randomUUID } from 'crypto';
 
 export class User {
   uuid!: string;
+  username!: string;
   firstname!: string;
   lastname!: string;
   email!: string;

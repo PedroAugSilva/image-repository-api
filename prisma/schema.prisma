@@ -12,6 +12,7 @@ datasource db {
 
 model User {
   uuid      String    @id
+  username  String    @unique
   firstname String
   lastname  String
   photo     String?

@@ -24,10 +24,13 @@ export class CreateUserUseCase implements ICreateUserUseCase {
       if (!input.email) {
         return new MissingParamError('email');
       }
-
       const user = await this.usersRepository.findUserByEmail(input.email);
       if (user) {
         return new AlreadyExistsUserError();
+      }
+
+      if (!input.username) {
+        return new MissingParamError('username');
       }
 
       if (!input.firstname) {
@@ -42,12 +45,13 @@ export class CreateUserUseCase implements ICreateUserUseCase {
       }
 
       const newUser = new User({
+        username: input.username,
         firstname: input.firstname,
         lastname: input.lastname,
         email: input.email,
         password: input.password,
       });
-      // console.log(newUser);
+
       await this.usersRepository.save(newUser);
       return undefined;
     } catch (error) {

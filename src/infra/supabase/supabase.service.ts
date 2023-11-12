@@ -6,13 +6,13 @@ import {
 } from 'src/domain/contants/supabase.constants';
 
 export class SupabaseService {
+  private readonly supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
+    auth: {
+      persistSession: false,
+    },
+  });
   async upload(bucket: string, file: Express.Multer.File): Promise<string> {
-    const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
-      auth: {
-        persistSession: false,
-      },
-    });
-    const result = await supabase.storage
+    const result = await this.supabase.storage
       .from(bucket)
       .upload(file.originalname, file.buffer, {
         upsert: true,

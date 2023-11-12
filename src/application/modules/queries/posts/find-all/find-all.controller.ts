@@ -21,6 +21,7 @@ export class FindAllController {
             photo: true,
             firstname: true,
             lastname: true,
+            username: true,
           },
         },
         tags: {
@@ -38,6 +39,7 @@ export class FindAllController {
       user: {
         photo: post.user.photo,
         name: `${post.user.firstname} ${post.user.firstname}`,
+        username: post.user.username,
       },
     }));
   }
