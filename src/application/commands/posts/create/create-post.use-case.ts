@@ -34,14 +34,13 @@ export class CreatePostUseCase implements ICreatePostUseCase {
 
       const post = new Post({
         ...input,
-        imageUrl: imageUrl,
+        imageUrl,
         createdAt: new Date(),
         updatedAt: new Date(),
         likes: 0,
       });
 
       await this.postsRepository.save(post);
-      console.log(input);
       return undefined;
     } catch (error) {
       return new UnexpectedError(error);
